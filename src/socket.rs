@@ -135,12 +135,6 @@ impl Socket {
         let (meta, msg) = ServerMessages::parse_server_message(&msg.to_text().unwrap());
 
         match msg.clone() {
-            ServerMessages::None => {
-            	println!("Recieved: {}", meta.op)
-            },
-            ServerMessages::Ack(_) => {
-            	println!("Ack!");
-            },
             ServerMessages::Handshake(hello) => {
                 self.send_message(2, &self.prop.clone()).await;
 
